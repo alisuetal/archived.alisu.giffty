@@ -1,0 +1,29 @@
+.addedGuest{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3vh;
+    background-color: rgba(170, 170, 170, 0.15);
+    border-radius: 2vh;
+    border: none;
+    font-size: 3vh;
+    padding: 2vh;
+    appearance: none;
+    color: #222222;
+    word-wrap: break-word;
+    height: 8vh;
+}
+
+.addedGuest:nth-of-type(1){
+    margin-top: 0;
+}
+
+.addedGuest img{
+    height: 3.5vh;
+    cursor: pointer;
+}
+  
+.addedGuest p{
+    padding: 1vh 0 1vh 0;
+}

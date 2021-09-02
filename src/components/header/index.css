@@ -1,0 +1,35 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1vh;
+}
+
+.goBack{
+    height: 4.5vh;
+}
+
+.settingsIcon{
+    cursor: pointer;
+}
+
+.headerSteps{
+    display: flex;
+    justify-content: center;
+    padding: 2vh 0vh 2vh 0vh;
+    width: 100%;
+}
+
+.headerSteps img:nth-child(2){
+    padding: 0vh 2vh 0vh 2vh;
+}
+
+@media only screen and (max-width: 500px) {
+    .goBack{
+        height: 3.5vh;
+    }
+
+    .settingsIcon{
+        height: 5.5vh;
+    }
+}

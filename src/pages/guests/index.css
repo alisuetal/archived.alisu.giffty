@@ -1,0 +1,59 @@
+.guestList{
+    margin-top: 3vh;
+    height: 54vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.formHolder{
+    width: 90%;
+}
+
+.formHolder input{
+    background-color: rgba(194, 194, 194, 0) !important;
+}
+
+.formHolder div:nth-of-type(3){
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.formHolder div:nth-of-type(3) > div{
+    display: inline-flex;
+    width: 80% !important;
+    vertical-align: middle;
+    max-width: 500px;
+}
+
+.inputHolder{
+    background-color: rgba(120, 120, 120, 0.08) !important;
+    margin-top: 3vh;
+}
+
+.formHolder button{
+    width: 8vh;
+    height: 8vh;
+    border-radius: 2vh;
+    border: none;
+    background-color: #8542c8;
+    background-image: url("../../img/addWhite.svg");
+    background-position: center;
+    background-size: 5vh;
+    background-repeat: no-repeat;
+    margin-top: 3vh;
+    transition: 0.2s;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.formHolder button:hover {
+    background-color: #67329c;
+}
+
+@media only screen and (max-width: 400px) {
+    .formHolder div:nth-of-type(3) > div{
+        width: 70% !important;
+    }
+}

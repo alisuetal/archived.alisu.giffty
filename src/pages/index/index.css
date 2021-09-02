@@ -1,0 +1,13 @@
+.giffty3d{
+    height: 22vh;
+    padding: 10vh 0 6vh 0;
+}
+
+.bottomLink{
+    font-size: 2.5vh;
+    text-align: center;
+    color: #999999;
+    padding-top: 2vh;
+    cursor: pointer;
+    transition: 0.4s;
+}

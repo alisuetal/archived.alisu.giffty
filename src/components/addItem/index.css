@@ -1,0 +1,24 @@
+.addItem{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3vh;
+    background-color: rgba(170, 170, 170, 0.10);
+    border-radius: 2vh;
+    border: none;
+    font-size: 3vh;
+    padding: 2vh;
+    appearance: none;
+    color: #888888;
+    cursor: pointer;
+    height: 8vh;
+}
+
+.addItem img{
+    height: 3.5vh;
+}
+  
+.addItem p{
+    padding: 1vh 0 1vh 0;
+}
