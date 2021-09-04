@@ -15,10 +15,6 @@
     cursor: pointer;
 }
 
-.button:hover {
-    background-color: #67329c;
-}
-
 .button img{
     height: 4vh;
 }

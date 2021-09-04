@@ -22,11 +22,11 @@ export default class AddedGuest extends React.Component{
 
     render(){
         return(
-            <button className='addedGuest'>
-                <span style={this.state.color}>{this.props.name}</span>
+            <button className='addedGuest listItem'>
+                <span style={this.state.color}>{this.props.guestName}</span>
                 <div>
-                    <img src={this.state.delete} alt="Delete" align='right'/>
-                    <img src={this.state.edit} onClick={this.props.function} alt="Edit" style={{'marginRight': '1vh'}} align='right'/>
+                    <img src={this.state.delete} onClick={() => this.props.delete(this.props.id)} alt="Delete" align='right'/>
+                    <img src={this.state.edit} onClick={() => this.props.edit(this.props.id)} alt="Edit" style={{'marginRight': '1vh'}} align='right'/>
                 </div>
             </button>
         );
