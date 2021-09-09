@@ -3,70 +3,65 @@ import LineWhite from "../../img/lineWhite.svg";
 import LineBlack from "../../img/lineBlack.svg";
 import './index.css';
 
-export default class BottomPanel extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            styleHolder: {opacity: '0', display: 'none'},
-            stylePanel: {marginBottom: '-100vh', display: 'none'},
-            holderBackground: {backgroundColor: "rgba(200, 200, 200, 0.5)"},
-            panelBackground: {backgroundColor: "rgba(255, 255, 255, 0.7)"},
-            panelIcon: LineBlack, content: ""
-        };
-        this.openPanel = this.openPanel.bind(this);
-        this.closePanel = this.closePanel.bind(this);
-        this.theme = this.theme.bind(this);
-    }
+export default function BottomPanel (props){
+    const theme = props.theme;
+    const content = props.content;
 
-    componentDidMount(){
-        if(this.props.theme === 1){
-            this.setState({holderBackground: {backgroundColor: "rgba(10, 10, 10, 0.5)"}, panelBackground: {backgroundColor: "rgba(0, 0, 0, 0.7)"}, panelIcon: LineWhite});
-        }
-    }
+    const [iconPanel, setIcon] = React.useState(LineBlack);
 
-    theme(e){
-        if(e === 1 && this.state.theme !== 1){
-            this.setState({holderBackground: {backgroundColor: "rgba(10, 10, 10, 0.5)"}, panelBackground: {backgroundColor: "rgba(0, 0, 0, 0.7)"}, panelIcon: LineWhite});
-        }
-        else if(e === 0 && this.state.theme !== 0){
-            this.setState({holderBackground: {backgroundColor: "rgba(200, 200, 200, 0.5)"}, panelBackground: {backgroundColor: "rgba(255, 255, 255, 0.7)"}, panelIcon: LineBlack});
-        }
-    }
+    const[styleHolder, setStyleHolder] = React.useState({
+        "opacity": {opacity: "0"},
+        "display": {display: "none"},
+        "background": {backgroundColor: "rgba(200, 200, 200, 0.5)"}
+    });
 
-    openPanel(c){
-        this.setState({content: c});
-        this.setState({styleHolder: {opacity: '0', display: 'flex'}});
-        this.setState({stylePanel: {marginBottom: '-100vh', display: 'block'}});
+    const[stylePanel, setStylePanel] = React.useState({
+        "margin": {marginBottom: "-100vh"},
+        "display": {display: "none"},
+        "background": {backgroundColor: "rgba(255, 255, 255, 0.7)"}
+    });
+
+    React.useEffect(() => {
+        if(theme === 1){
+            setStyleHolder((style) => ({...style, "background": {backgroundColor: "rgba(10, 10, 10, 0.5)"}}));
+            setStylePanel((style) => ({...style, "background": {backgroundColor: "rgba(0, 0, 0, 0.7)"}}));
+            setIcon(LineWhite);
+        }
+        else{
+            setStyleHolder((style) => ({...style, "background": {backgroundColor: "rgba(200, 200, 200, 0.5)"}}));
+            setStylePanel((style) => ({...style, "background": {backgroundColor: "rgba(255, 255, 255, 0.7)"}}));
+            setIcon(LineBlack);
+        }
+    }, [theme]);
+
+    React.useEffect(() => {
+        setStyleHolder((style) => ({...style, "display": {display: "flex"}}));
+        setStylePanel((style) => ({...style, "display": {display: "block"}}));
         setTimeout(() => {
-            this.setState({styleHolder: {opacity: '1', display: 'flex'}});
+            setStyleHolder((style) => ({...style, "opacity": {opacity: "1"}}));
         }, 10);
         setTimeout(() => {
-            this.setState({stylePanel: {marginBottom: '0vh', display: 'block'}});
+            setStylePanel((style) => ({...style, "margin": {marginBottom: "0vh"}}));
         }, 20);
-    }
+        
+        return () =>{
+            setStylePanel((style) => ({...style, "margin": {marginBottom: "-100vh"}}));
+            setTimeout(() => {
+                setStylePanel((style) => ({...style, "display": {display: "none"}}));
+                setStyleHolder((style) => ({...style, "opacity": {opacity: "0"}}));
+            }, 400);
+            setTimeout(() => {
+                setStyleHolder((style) => ({...style, "display": {display: "none"}}));
+            }, 410);
+        }
+    }, []);
 
-    closePanel(){
-        this.setState({stylePanel: {marginBottom: '-100vh', display: 'block'}});
-        setTimeout(() => {
-            this.setState({stylePanel: {marginBottom: '-100vh', display: 'none'}});
-            this.setState({styleHolder: {opacity: '0', display: 'flex'}});
-        }, 400);
-        setTimeout(() => {
-            this.setState({styleHolder: {opacity: '0', display: 'none'}});
-        }, 410);
-        this.setState({content: ""});
-    }
-    
-    render(){
-        let holderProps = Object.assign({}, ...[this.state.styleHolder, this.state.holderBackground].map((x, y, z)=>(x)));
-        let panelProps = Object.assign({}, ...[this.state.stylePanel, this.state.panelBackground].map((x, y, z)=>(x)));
-        return(
-            <div style={holderProps} className="bottomPanelHolder">
-                <div style={panelProps} className='bottomPanel' align='center'>
-                    <img src={this.state.panelIcon} alt="Closing panel icon" align='center' onClick={this.closePanel}/>
-                    {this.state.content}
-                </div>
+    return(
+        <div style={Object.assign({}, ...Object.keys(styleHolder).map((x) => (styleHolder[x])))} className="bottomPanelHolder">
+            <div style={Object.assign({}, ...Object.keys(stylePanel).map((x) => (stylePanel[x])))} className='bottomPanel' align='center'>
+                <img src={iconPanel} alt="Closing panel icon" align='center' onClick={props.closePanel}/>
+                {content}
             </div>
-        );
-    }
+        </div>
+    );
 }

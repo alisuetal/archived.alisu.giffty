@@ -5,30 +5,22 @@ import EditBlack from "../../img/editBlack.svg";
 import EditWhite from "../../img/editWhite.svg";
 import "./index.css";
 
-export default class AddedGuest extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {delete: DeleteBlack, edit: EditBlack, color: {color: "#222222"}};
-    }
+export default function AddedGuest (props){
+    const[style, setStyle] = React.useState({"delete": DeleteBlack, "edit": EditBlack, "color": {color: "#222222"}});
 
-    componentDidMount(){
-        if(this.props.theme === 1){
-            this.setState({delete: DeleteWhite, edit: EditWhite, color: {color: "#ffffff"}});
+    React.useEffect(() => {
+        if(props.theme === 1){
+            setStyle({"delete": DeleteWhite, "edit": EditWhite, "color": {color: "#ffffff"}});
         }
-        else{
-            this.setState({delete: DeleteBlack, edit: EditBlack, color: {color: "#222222"}});
-        }
-    }
+    }, [])
 
-    render(){
-        return(
-            <button className='addedGuest listItem'>
-                <span style={this.state.color}>{this.props.guestName}</span>
-                <div>
-                    <img src={this.state.delete} onClick={() => this.props.delete(this.props.id)} alt="Delete" align='right'/>
-                    <img src={this.state.edit} onClick={() => this.props.edit(this.props.id)} alt="Edit" style={{'marginRight': '1vh'}} align='right'/>
-                </div>
-            </button>
-        );
-    }
+    return(
+        <button className="addedGuest">
+            <span style={style["color"]}>{props.guestName}</span>
+            <div align="right">
+                <img src={style["delete"]} onClick={() => props.delete(props.id)} alt="Delete"/>
+                <img src={style["edit"]} onClick={() => props.edit(props.id)} alt="Edit"/>
+            </div>
+        </button>
+    );
 }

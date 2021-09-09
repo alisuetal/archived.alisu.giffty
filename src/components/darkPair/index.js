@@ -25,11 +25,11 @@ export default class DarkPair extends React.Component{
             <button className='darkPair'>
                 <div>
                     <span style={this.state.color}>{this.props.nameOne}</span>
-                    <img src={this.state.edit} onClick={this.props.function} alt="Edit" align='right'/>
+                    <img src={this.state.edit} onClick={() => this.props.edit(this.props.pairIndex)} alt="Edit" align='right'/>
                 </div>
                 <div>
                     <span style={this.state.color}>{this.props.nameTwo}</span>
-                    <img src={this.state.delete} alt="Delete" align='right'/>
+                    <img src={this.state.delete} onClick={() => this.props.delete(this.props.pairIndex)} alt="Delete" align='right'/>
                 </div>
             </button>
         );

@@ -12,7 +12,7 @@ import "./index.css";
 export default class Guests extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {mainColor: {color: "#222222"}, guests: GetGuestList(), form: 0, giftPrice: GetPrice(), button: (GetGuestList().length !== 0)};
+        this.state = {mainColor: {color: "#222222"}, guests: GetGuestList(), form: 0, giftPrice: GetPrice(), button: (GetGuestList().length >= 3)};
         this.getAddGuest = this.getAddGuest.bind(this);
         this.getEdit = this.getEdit.bind(this);
         this.appendGuests = this.appendGuests.bind(this);
@@ -28,6 +28,10 @@ export default class Guests extends React.Component{
         else{
             this.setState({mainColor: {color: "#222222"}});
         }
+        sessionStorage.setItem(1, '[]');
+        SetGuest("Guest 1", "Gift 1", "0");
+        SetGuest("Guest 2", "Gift 2", "0");
+        SetGuest("Guest 3", "Gift 3", "0");
     }
 
     submitDelete(index){
@@ -38,8 +42,8 @@ export default class Guests extends React.Component{
             }
             else{
                 this.setState({guests: GetGuestList()});
-                this.button.shouldClick(false);
             }
+            this.button.shouldClick((GetGuestList().length >= 3));
         }
     }
 
@@ -66,7 +70,7 @@ export default class Guests extends React.Component{
             }
         }
         this.setState({guests: GetGuestList()});
-        this.button.shouldClick(true);
+        this.button.shouldClick((GetGuestList().length >= 3));
         this.props.bottomPanel.closePanel();
     }
     
@@ -81,7 +85,7 @@ export default class Guests extends React.Component{
     }
 
     appendGuests(){
-        let array = []
+        let array = [];
         if(GetGuestList().length !== 0){
             array = GetGuestList().map((x, y) => (<AddedGuest theme={this.props.theme} edit={this.getEdit} delete={this.submitDelete} guestName={x[0]} key={y} id={y}/>));
         }
@@ -97,7 +101,7 @@ export default class Guests extends React.Component{
                     {(this.appendGuests().length !== 0) ? this.appendGuests().map((x) => (x)) : false}
                     <AddItem function={this.getAddGuest} text="Add guest"/>
                 </div>
-                <Link to={() => (this.state.button) ? ("/dark-pairs") : false}><Button button={this.state.button} ref={(e) => this.button = e} value="Next" image={RightArrow} alt="Next icon"/></Link>
+                <Link to={() => ((GetGuestList().length >= 3)) ? ("/dark-pairs") : false}><Button button={this.state.button} ref={(e) => this.button = e} value="Next" image={RightArrow} alt="Next icon"/></Link>
             </div>
         );
     }

@@ -29,7 +29,14 @@ export function GetDarkPair(index){
     return array[index];
 }
 
-export function RemoveDarkPair(index){
+export function EditDarkPair(index, guestOne, guestTwo){
+    let guestList = JSON.parse(sessionStorage.getItem(1));
+    guestList[index] = [guestOne, guestTwo];
+
+    sessionStorage.setItem(3, JSON.stringify(guestList));
+}
+
+export function DeleteDarkPair(index){
     let array = JSON.parse(sessionStorage.getItem(3));
     array.splice(index, 1);
     sessionStorage.setItem(3, JSON.stringify(array));
