@@ -13,7 +13,7 @@ export default function Header (props){
     const [icon, setIcon] = React.useState(SettingsBlack);
 
     React.useEffect(() => {
-        if(props.theme === 1){
+        if(props.theme === true){
             setIcon(SettingsWhite);
         }
         else{
@@ -48,7 +48,7 @@ export default function Header (props){
             <div className="header">
                 {headerState["back"]}
                 <LogoName/>
-                <img src={icon} className="settingsIcon" onClick={() => props.headerFunction} alt="Settings button" align="right"/>
+                <img src={icon} className="settingsIcon" onClick={() => props.headerFunction()} alt="Settings button" align="right"/>
             </div>
             {headerState["img"]}
         </div>

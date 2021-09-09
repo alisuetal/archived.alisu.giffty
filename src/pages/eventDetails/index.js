@@ -6,36 +6,32 @@ import RightArrow from "../../img/rightArrow.svg";
 import TextField from "../../components/textField";
 import { SetPrice , GetPrice } from "../../script";
 import "./index.css";
+import { SetGuest } from "../../script";
 
-export default class EventDetails extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {mainColor: {color: "#222222"}};
-        this.setPrice = this.setPrice.bind(this);
-    }
+export default function EventDetails (props){
+    sessionStorage.setItem(1, '[]');
+    SetGuest("Guest 1", "Gift 1", "1");
+    SetGuest("Guest 2", "Gift 2", "2");
+    SetGuest("Guest 3", "Gift 3", "3");
+    const [mainColor, setMainColor] = React.useState({color: ""});
+    const [fieldValue, setFieldValue] = React.useState("0");
 
-    componentDidMount(){
-        if(this.props.theme === 1){
-            this.setState({mainColor: {color: "#ffffff"}});
+    React.useEffect(() => {
+        if(props.theme === true){
+            setMainColor({color: "#ffffff"});
         }
         else{
-            this.setState({mainColor: {color: "#222222"}});
+            setMainColor({color: "#222222"});
         }
-    }
+    }, [props.theme]);
 
-    setPrice(){
-        SetPrice(this.textField.inFormat("currency"));
-    }
-
-    render(){
-        return(
-            <div className="page">
-                <Header back={1} step={1} theme={this.props.theme} link="/" headerFunction={this.props.headerFunction} bottomPanel={this.props.bottomPanel}/>
-                <p className='title' style={this.state.mainColor}>Let's set the budget first.</p>
-                <span style={{height: "36vh"}}/>
-                <TextField value={GetPrice()} type="num" ref={(child) => this.textField = child} theme={this.props.theme} format="currency" placeholder="Gift price (optional)"/>
-                <Link to="/guests" onClick={this.setPrice}><Button value="Next" image={RightArrow} alt="Next icon"/></Link>
-            </div>
-        );
-    }
+    return(
+        <div className="page">
+            <Header step={1} theme={props.theme} link="/" headerFunction={props.headerFunction}/>
+            <p className='title' style={mainColor}>Let's set the budget first.</p>
+            <span style={{height: "36vh"}}/>
+            <TextField value={GetPrice()} type="num" function={setFieldValue} theme={props.theme} format="currency" placeholder="Gift price (optional)"/>
+            <Link to="/guests" onClick={() => SetPrice(fieldValue)}><Button value="Next" image={RightArrow} alt="Next icon"/></Link>
+        </div>
+    );
 }

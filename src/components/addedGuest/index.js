@@ -9,7 +9,7 @@ export default function AddedGuest (props){
     const[style, setStyle] = React.useState({"delete": DeleteBlack, "edit": EditBlack, "color": {color: "#222222"}});
 
     React.useEffect(() => {
-        if(props.theme === 1){
+        if(props.theme === true){
             setStyle({"delete": DeleteWhite, "edit": EditWhite, "color": {color: "#ffffff"}});
         }
     }, [])

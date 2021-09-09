@@ -22,7 +22,7 @@ export default function BottomPanel (props){
     });
 
     React.useEffect(() => {
-        if(theme === 1){
+        if(theme === true){
             setStyleHolder((style) => ({...style, "background": {backgroundColor: "rgba(10, 10, 10, 0.5)"}}));
             setStylePanel((style) => ({...style, "background": {backgroundColor: "rgba(0, 0, 0, 0.7)"}}));
             setIcon(LineWhite);

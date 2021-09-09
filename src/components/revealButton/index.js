@@ -13,7 +13,7 @@ export default function RevealButton (props){
 
 
     React.useEffect(() => {
-        if(props.theme === 1){
+        if(props.theme === true){
             setMainColor({mainColor: {color: "#ffffff"}});
         }
         else{

@@ -5,10 +5,10 @@ export default function Button (props){
     const [style, setStyle] = React.useState();
 
     React.useEffect(() => {
-        if(props.button === true || props.button === undefined){
+        if(props.button === true && style !== {backgroundColor: "#8542c8"}){
             setStyle({backgroundColor: "#8542c8"});
         }
-        else{
+        else if(props.button === false && style === {backgroundColor: "#8542c8"}){
             setStyle({backgroundColor: "#a284c2"});
         }
     }, [props.button]);

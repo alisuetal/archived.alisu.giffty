@@ -11,51 +11,48 @@ import Donate from "../pages/donate";
 import SelectItems from "../components/selectItems";
 import './index.css';
 
-export default class Routes extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {content: false, pageStyle: {backgroundColor: "#ffffff"}, theme: 0, script: ""};
-        this.settings = this.settings.bind(this);
-        this.changeTheme = this.changeTheme.bind(this);
-    }
 
-    componentDidMount(){
-        this.setState({bottomPanel: this.bottomPanel});
-    }
+export default function Routes (){
+    const [panelContent, setPanelContent] = React.useState(false);
+    const [background, setBackground] = React.useState({backgroundColor: "#ffffff"});
+    const [theme, setTheme] = React.useState(false);
+    const baseSelect = <SelectItems value={+theme} content={[["Light theme", 0], ["Dark theme", 1]]} select="theme" function={changeTheme} theme={theme}/>;
 
-    changeTheme(...x){
-        if(x[1] === "1"){
-            this.setState({pageStyle: {backgroundColor: "#222222"}, theme: 1});
-            this.selectTheme.theme(1);
+    function changeTheme(x){
+        if(x === "1"){
+            setTheme(true);
+            setBackground({backgroundColor: "#222222"});
         }
         else{
-            this.setState({pageStyle: {backgroundColor: "#ffffff"}, theme: 0});
-            this.selectTheme.theme(0);
+            setTheme(false);
+            setBackground({backgroundColor: "#ffffff"});
         }
     }
 
-    settings(){
-        let content = 
-        <SelectItems ref={(child) => this.selectTheme = child} content={[["Select a theme", -1], ["Light theme", 0], ["Dark theme", 1]]} function={this.changeTheme} theme={this.state.theme}/>;
-        this.setState({content: content});
+    React.useEffect(() => {
+        if(panelContent !== false){
+            setPanelContent(baseSelect);
+        }
+    }, [theme])
+
+    function settings(){
+        setPanelContent(baseSelect);
     }
 
-    render(){
-        return(
-            <BrowserRouter>
-                <div className="root-page" style={this.state.pageStyle}>
-                    {(this.state.content) ? <BottomPanel theme={this.state.theme} closePanel={() => this.setState({content: false})} content={this.state.content}/> : false}
-                    <Switch>
-                        <Route exact path="/" component={() => (<Index bottomPanel={this.state.bottomPanel} headerFunction={this.settings} theme={this.state.theme} script={this.state.script}/>)}/>
-                        <Route exact path="/event-details" component={() => (<EventDetails bottomPanel={this.state.bottomPanel} headerFunction={this.settings} theme={this.state.theme} script={this.state.script}/>)}/>
-                        <Route exact path="/guests" component={() => (<Guests bottomPanel={this.state.bottomPanel} headerFunction={this.settings} theme={this.state.theme} script={this.state.script}/>)}/>
-                        <Route exact path="/dark-pairs" component={() => (<DarkPairs bottomPanel={this.state.bottomPanel} headerFunction={this.settings} theme={this.state.theme} script={this.state.script}/>)}/>
-                        <Route exact path="/game-begin" component={() => (<GameBegin bottomPanel={this.state.bottomPanel} headerFunction={this.settings} theme={this.state.theme} script={this.state.script}/>)}/>
-                        <Route exact path="/reveal" component={() => (<Reveal bottomPanel={this.state.bottomPanel} headerFunction={this.settings} theme={this.state.theme} script={this.state.script}/>)}/>
-                        <Route exact path="/donate" component={() => (<Donate bottomPanel={this.state.bottomPanel} headerFunction={this.settings} theme={this.state.theme} script={this.state.script}/>)}/>
-                    </Switch>
-                </div>
-            </BrowserRouter>
-        );
-    }
+    return(
+        <BrowserRouter>
+            <div className="root-page" style={background}>
+                {(panelContent) ? <BottomPanel theme={theme} closePanel={() => setPanelContent(false)} content={panelContent}/> : false}
+                <Switch>
+                    <Route exact path="/" component={() => (<Index headerFunction={settings} theme={theme}/>)}/>
+                    <Route exact path="/event-details" component={() => (<EventDetails headerFunction={settings} theme={theme}/>)}/>
+                    <Route exact path="/guests" component={() => (<Guests headerFunction={settings} theme={theme}/>)}/>
+                    <Route exact path="/dark-pairs" component={() => (<DarkPairs headerFunction={settings} theme={theme}/>)}/>
+                    <Route exact path="/game-begin" component={() => (<GameBegin headerFunction={settings} theme={theme}/>)}/>
+                    <Route exact path="/reveal" component={() => (<Reveal headerFunction={settings} theme={theme}/>)}/>
+                    <Route exact path="/donate" component={() => (<Donate headerFunction={settings} theme={theme}/>)}/>
+                </Switch>
+            </div>
+        </BrowserRouter>
+    );
 }

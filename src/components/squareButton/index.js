@@ -2,19 +2,19 @@ import React from "react";
 import './index.css';
 
 export default function SquareButton (props){
-    const [button, setButton] = React.useState();
+    const [style, setStyle] = React.useState();
 
     React.useEffect(() => {
         //decide if it's going to be functional or not
         if(props.button === true || props.button === undefined){
-            setButton(<button style={{opacity: "1"}} className="squareButton" onClick={() => props.function()}/>);
+            setStyle({opacity: "1"});
         }
         else{
-            setButton(<button style={{opacity: "0.5"}} className="squareButton"/>);
+            setStyle({opacity: "0.5"});
         }
     }, [props.button])
         
     return(
-        <>{button}</>
+        <button style={style} className="squareButton"/>
     );
 }

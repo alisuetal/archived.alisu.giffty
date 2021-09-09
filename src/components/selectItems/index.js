@@ -8,7 +8,7 @@ export default function SelectItems (props){
     const [selected, setSelected] = React.useState("-1");
 
     React.useEffect(() => {
-        if(props.theme === 1){
+        if(props.theme === true){
             setStyle({color: "#ffffff", backgroundImage: "url(" + DownWhite + ")"});
         }
         else{
@@ -25,7 +25,7 @@ export default function SelectItems (props){
     
     function changeSelect(e){
         props.function(e);
-        setSelected(e.toString());
+        setSelected(e);
     }
 
     return(

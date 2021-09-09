@@ -9,7 +9,7 @@ export default function DarkPair (props){
     const [style, setStyle] = React.useState();
 
     React.useEffect(() => {
-        if(props.theme === 1){
+        if(props.theme === true){
             setStyle({"delete": DeleteWhite, "edit": EditWhite, "color": {color: "#ffffff"}});
         }
         else{

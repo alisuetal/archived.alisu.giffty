@@ -3,32 +3,31 @@ import './index.css';
 
 export default function TextField (props){
     const [mainColor, setMainColor] = React.useState();
-    const [value, setValue] = React.useState("");
+    const [value, setValue] = React.useState(() => {
+        if(props.value !== undefined){
+            if(props.type === "num"){
+                return new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(props.value);
+            }
+            else{
+                return props.value;
+            }
+            
+        }
+        else{
+            if(props.type === "num"){
+                return new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(0);
+            }
+        }
+    });
 
     React.useEffect(() => {
-        if(props.theme === 1){
+        if(props.theme === true){
             setMainColor({color: "#ffffff"});
         }
         else{
             setMainColor({color: "#222222"});
         }
     }, [props.theme]);
-
-    React.useEffect(() => {
-        if(props.value !== undefined){
-            if(props.type === "num"){
-                setValue(new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(props.value));
-            }
-            else{
-                setValue(props.value);
-            }
-        }
-        else{
-            if(props.type === "num"){
-                setValue(new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(0));
-            }
-        }
-    }, [props.value]);
     
     function inFormat(x){
         switch(x){
@@ -78,6 +77,10 @@ export default function TextField (props){
         //validar
         if(validDigit(digit, type)){
             setValue(e);
+
+            if(props.function !== undefined){
+                props.function(e, props.name);
+            }
         }
     }
 
