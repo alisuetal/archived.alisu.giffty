@@ -43,23 +43,26 @@ export default function BottomPanel (props){
         setTimeout(() => {
             setStylePanel((style) => ({...style, "margin": {marginBottom: "0vh"}}));
         }, 20);
-        
-        return () =>{
-            setStylePanel((style) => ({...style, "margin": {marginBottom: "-100vh"}}));
-            setTimeout(() => {
-                setStylePanel((style) => ({...style, "display": {display: "none"}}));
-                setStyleHolder((style) => ({...style, "opacity": {opacity: "0"}}));
-            }, 400);
-            setTimeout(() => {
-                setStyleHolder((style) => ({...style, "display": {display: "none"}}));
-            }, 410);
-        }
     }, []);
+
+    function unmount(){
+        setStylePanel((style) => ({...style, "margin": {marginBottom: "-100vh"}}));
+        setTimeout(() => {
+            setStylePanel((style) => ({...style, "display": {display: "none"}}));
+            setStyleHolder((style) => ({...style, "opacity": {opacity: "0"}}));
+        }, 400);
+        setTimeout(() => {
+            setStyleHolder((style) => ({...style, "display": {display: "none"}}));
+        }, 410);
+        setTimeout(() => {
+            props.closePanel();
+        }, 420);
+    }
 
     return(
         <div style={Object.assign({}, ...Object.keys(styleHolder).map((x) => (styleHolder[x])))} className="bottomPanelHolder">
             <div style={Object.assign({}, ...Object.keys(stylePanel).map((x) => (stylePanel[x])))} className='bottomPanel' align='center'>
-                <img src={iconPanel} alt="Closing panel icon" align='center' onClick={props.closePanel}/>
+                <img src={iconPanel} alt="Closing panel icon" align='center' onClick={() => unmount()}/>
                 {content}
             </div>
         </div>

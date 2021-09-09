@@ -5,33 +5,28 @@ import EditBlack from "../../img/editBlack.svg";
 import EditWhite from "../../img/editWhite.svg";
 import "./index.css";
 
-export default class DarkPair extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {delete: DeleteBlack, edit: EditBlack, color: {color: "#222222"}};
-    }
+export default function DarkPair (props){
+    const [style, setStyle] = React.useState();
 
-    componentDidMount(){
-        if(this.props.theme === 1){
-            this.setState({delete: DeleteWhite, edit: EditWhite, color: {color: "#ffffff"}});
+    React.useEffect(() => {
+        if(props.theme === 1){
+            setStyle({"delete": DeleteWhite, "edit": EditWhite, "color": {color: "#ffffff"}});
         }
         else{
-            this.setState({delete: DeleteBlack, edit: EditBlack, color: {color: "#222222"}});
+            setStyle({"delete": DeleteBlack, "edit": EditBlack, "color": {color: "#222222"}});
         }
-    }
+    }, [props.theme]);
 
-    render(){
-        return(
-            <button className='darkPair'>
-                <div>
-                    <span style={this.state.color}>{this.props.nameOne}</span>
-                    <img src={this.state.edit} onClick={() => this.props.edit(this.props.pairIndex)} alt="Edit" align='right'/>
-                </div>
-                <div>
-                    <span style={this.state.color}>{this.props.nameTwo}</span>
-                    <img src={this.state.delete} onClick={() => this.props.delete(this.props.pairIndex)} alt="Delete" align='right'/>
-                </div>
-            </button>
-        );
-    }
+    return(
+        <button className='darkPair'>
+            <div>
+                <span style={style["color"]}>{props.nameOne}</span>
+                <img src={style["edit"]} onClick={() => props.edit(props.pairIndex)} alt="Edit" align='right'/>
+            </div>
+            <div>
+                <span style={style["color"]}>{props.nameTwo}</span>
+                <img src={style["delete"]} onClick={() => props.delete(props.pairIndex)} alt="Delete" align='right'/>
+            </div>
+        </button>
+    );
 }

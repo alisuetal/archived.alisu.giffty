@@ -3,51 +3,34 @@ import DownBlack from "../../img/downBlack.svg";
 import DownWhite from "../../img/downWhite.svg";
 import './index.css';
 
-export default class SelectItems extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {style: {color: "#222222", backgroundImage: "url(" + DownBlack + ")"}, theme: 0, isSelecting: (this.props.isSelecting !== undefined && this.props.isSelecting === true), selected: ((this.props.value !== undefined) ? (this.props.value.toString()) : ("-1"))};
-        this.setSelected = this.setSelected.bind(this);
-    }
+export default function SelectItems (props){
+    const [style, setStyle] = React.useState({color: "#222222", backgroundImage: "url(" + DownBlack + ")"});
+    const [selected, setSelected] = React.useState("-1");
 
-    componentDidMount(){
-        if(this.props.theme === 1){
-            this.setState({style: {color: "#ffffff", backgroundImage: "url(" + DownWhite + ")"}, theme: 1});
-        }
-
-        if(this.props.value !== undefined){
-            this.optionSelected.selected = true;
-        }
-    }
-
-    setSelected(obj, e){
-        if(this.props.function !== undefined && obj !== undefined){
-            this.props.function(obj, e);
-        }
-        this.setState({selected: e.toString()});
-
-        if(e === "-1"){
-            this.setState({isSelecting: false});
+    React.useEffect(() => {
+        if(props.theme === 1){
+            setStyle({color: "#ffffff", backgroundImage: "url(" + DownWhite + ")"});
         }
         else{
-            this.setState({isSelecting: true});
+            setStyle({color: "#222222", backgroundImage: "url(" + DownBlack + ")"});
         }
+    }, [props.theme]);
+
+    React.useEffect(() => {
+        if(props.value !== undefined){
+            setSelected(props.value);
+        }
+    }, [props.value]);
+
+    
+    function changeSelect(e){
+        props.function(e);
+        setSelected(e.toString());
     }
 
-    theme(e){
-        if(e === 1 && this.state.theme !== 1){
-            this.setState({style: {color: "#ffffff", backgroundImage: "url(" + DownWhite + ")"}, theme: 1});
-        }
-        else if(e === 0 && this.state.theme !== 0){
-            this.setState({style: {color: "#222222", backgroundImage: "url(" + DownBlack + ")"}, theme: 0});
-        }
-    }
-
-    render(){
-        return(
-            <select style={this.state.style} onChange={(e) => this.setSelected(this, e.target.value)}>
-                {this.props.content.map((x) => (<option key={x[1] + this.props.select} ref={(e) => (x[1].toString() === this.state.selected) ? this.optionSelected = e : false} value={x[1]}>{x[0]}</option>))}
-            </select>
-        );
-    }
+    return(
+        <select style={style} onChange={(e) => changeSelect(e.target.value)} value={selected}>
+            {props.content.map((x) => (<option key={x[1] + props.select} value={x[1]}>{x[0]}</option>))}
+        </select>
+    );
 }

@@ -1,27 +1,22 @@
 import React from "react";
 import './index.css';
 
-export default class Instruction extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {mainColor: {color: "#222222"}, secondColor: {color: "#888888"}};
-    }
+export default function Instruction (props){
+    const [theme, setTheme] = React.useState({mainColor: "", secondColor: ""});
 
-    componentDidMount(){
-        if(this.props.theme === 1){
-            this.setState({mainColor: {color: "#ffffff"}, secondColor: {color: "#aaaaaa"}});
+    React.useEffect(() => {
+        if(props.theme === 1){
+            setTheme({mainColor: {color: "#ffffff"}, secondColor: {color: "#aaaaaa"}});
         }
         else{
-            this.setState({mainColor: {color: "#222222"}, secondColor: {color: "#888888"}});
+            setTheme({mainColor: {color: "#222222"}, secondColor: {color: "#888888"}});
         }
-    }
+    }, [props.theme]);
 
-    render(){
-        return(
-            <div className="instruction">
-                <span style={this.state.secondColor}>{this.props.number}</span>
-                <span style={this.state.mainColor}>{this.props.text}</span>
-            </div>
-        );
-    }
+    return(
+        <div className="instruction">
+            <span style={theme["secondColor"]}>{props.number}</span>
+            <span style={theme["mainColor"]}>{props.text}</span>
+        </div>
+    );
 }
