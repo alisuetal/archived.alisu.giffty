@@ -7,11 +7,11 @@ import "./index.css";
 export default function GuestForm (props){
     const [stateButton, setStateButton] = React.useState(false);
     const [stateField, setStateField] = React.useState(() => {
-        if(props !== null){
+        if(props.name !== undefined){
             return [props.name, props.giftSuggestion, props.giftPrice];
         }
         else{
-            return ["", "", ""];
+            return ["", "", "0"];
         }
     });
 
@@ -61,10 +61,10 @@ export default function GuestForm (props){
     return(
         <div className="formHolder">
             <TextField type="char" value={stateField[0]} name="name" function={saveField} theme={props.theme} placeholder="Name"/>
-            <TextField type="char" value={stateField[1]} name="giftSuggestion" function={saveField} theme={props.theme} placeholder="Gift suggestion"/>
+            <TextField value={stateField[1]} name="giftSuggestion" function={saveField} theme={props.theme} placeholder="Gift suggestion"/>
             <div>
                 <TextField type="num" value={stateField[2]} name="giftPrice" function={saveField} format="currency" theme={props.theme} placeholder="Gift price"/>
-                <a onClick={() => sendFuction(stateField)}><SquareButton button={stateButton}/></a>
+                <a onClick={() => (stateButton) ? sendFuction(stateField) : false}><SquareButton button={stateButton}/></a>
             </div>
         </div>
     );

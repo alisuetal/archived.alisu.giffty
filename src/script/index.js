@@ -13,10 +13,51 @@ if(sessionStorage.getItem(3) === null){
 }
 
 //dark pairs functions
+export function verifyDarkPair(...params){
+    if(params[0] !== params[1]){
+        let state = true;
+        for(let x = 0; x < 2; x++){
+            let qt = 0 ;
+
+            for(let y = 0; y < params[2].length; y++){
+                if(params[2][y].includes(params[0]) && params[2][y].includes(params[1])){
+                    state = false;
+                    break;
+                }
+                else if(params[2][y].includes(params[x])){
+                    qt++;
+                }
+            }
+
+            if((GetGuestList().length % 2) === 1){
+                if(((GetGuestList().length - 1) - qt) <= 2){
+                    state = false;
+                }
+            }
+            else{
+                if(((GetGuestList().length - 1) - qt) <= 1){
+                    state = false;
+                }
+            }
+        }
+        return state;
+    }
+    else{
+        return false;
+    }
+}
+
 export function SetDarkPair(guestOne, guestTwo){
-    let array = JSON.parse(sessionStorage.getItem(3));
-    array.push([guestOne, guestTwo]);
-    sessionStorage.setItem(3, JSON.stringify(array));
+    let darkPairList = GetDarkPairs();
+    if(verifyDarkPair(guestOne, guestTwo, darkPairList)){
+        darkPairList.push([guestOne, guestTwo]);
+        sessionStorage.setItem(3, JSON.stringify(darkPairList));
+
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 export function GetDarkPairs(){
@@ -30,10 +71,26 @@ export function GetDarkPair(index){
 }
 
 export function EditDarkPair(index, guestOne, guestTwo){
-    let guestList = JSON.parse(sessionStorage.getItem(1));
-    guestList[index] = [guestOne, guestTwo];
-
-    sessionStorage.setItem(3, JSON.stringify(guestList));
+    console.log(index, guestOne, guestTwo);
+    let darkPairList = GetDarkPairs();
+    if(GetDarkPair(index).includes(guestOne) && GetDarkPair(index).includes(guestTwo)){ //verificando se o par foi modificado de fato
+        return true
+    }
+    else{
+        let previousPair = darkPairList[index];
+        darkPairList[index] = ["editing", "editing"]; //removendo o par temporariamente para verificação, salvando o index
+        if(verifyDarkPair(guestOne, guestTwo, darkPairList)){
+            darkPairList[index] = [guestOne, guestTwo]; //realocando, caso possível
+            sessionStorage.setItem(3, JSON.stringify(darkPairList));
+    
+            return true;
+        }
+        else{
+            darkPairList[index] = previousPair; //se o par novo não for possível, volta ao antigo
+            sessionStorage.setItem(3, JSON.stringify(darkPairList));
+            return false;
+        }
+    }
 }
 
 export function DeleteDarkPair(index){
@@ -44,6 +101,14 @@ export function DeleteDarkPair(index){
 
 //guests functions
 export function SetGuest(guest, gift, giftPrice){
+    if(gift === null){
+        gift = "";
+    }
+
+    if(giftPrice === null){
+        giftPrice = "0";
+    }
+
     let addGuest = [guest, gift, giftPrice];
     let guestList = JSON.parse(sessionStorage.getItem(1));
     guestList.push(addGuest);
@@ -62,6 +127,14 @@ export function GetGuest(index){
 }
 
 export function EditGuest(index, guest, gift, giftPrice){
+    if(gift === null){
+        gift = "";
+    }
+    
+    if(giftPrice === null){
+        giftPrice = "0";
+    }
+    
     let guestList = JSON.parse(sessionStorage.getItem(1));
     guestList[index] = [guest, gift, giftPrice];
 

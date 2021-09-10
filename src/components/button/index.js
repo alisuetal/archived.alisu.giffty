@@ -8,7 +8,7 @@ export default function Button (props){
         if(props.button === true && style !== {backgroundColor: "#8542c8"}){
             setStyle({backgroundColor: "#8542c8"});
         }
-        else if(props.button === false && style === {backgroundColor: "#8542c8"}){
+        else if(props.button === false && style !== {backgroundColor: "#a284c2"}){
             setStyle({backgroundColor: "#a284c2"});
         }
     }, [props.button]);

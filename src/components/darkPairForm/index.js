@@ -5,7 +5,8 @@ import SquareButton from "../squareButton";
 
 export default function DarkPairForm (props){
     const [baseState, setBaseState] = React.useState([["Select guest", -1], ...GetGuestList().map((x, y) => ([x[0], y]))]);
-    const [stateSelect, setStateSelect] = React.useState({"selectOne": this.baseState, "selectTwo": this.baseState, "selectedOne": "", "selectedTwo": ""});
+    const [stateSelect, setStateSelect] = React.useState({"selectOne": baseState, "selectTwo": baseState});
+    const [selected, setSelected] = React.useState({"selectedOne": "", "selectedTwo": ""});
 
     function removeDuplicate(...x){
         if(x[0] !== undefined){
@@ -18,10 +19,12 @@ export default function DarkPairForm (props){
             
             //decide which select will get it
             if(x[1] === "one"){
-                setStateSelect((state) => ({...state, "selectTwo": [...array], "selectedOne": x[0].toString()}));
+                setStateSelect((state) => ({...state, "selectTwo": [...array]}));
+                setSelected((state) => ({...state, "selectedOne": x[0].toString()}));
             }
             else{
-                setStateSelect((state) => ({...state, "selectOne": [...array], "selectedTwo": x[0].toString()}));
+                setStateSelect((state) => ({...state, "selectOne": [...array]}));
+                setSelected((state) => ({...state, "selectedTwo": x[0].toString()}));
             }
         }
     }
@@ -30,7 +33,13 @@ export default function DarkPairForm (props){
         <>
             <SelectItems value={props.valueOne} content={stateSelect["selectOne"]} function={removeDuplicate} select={"one"} theme={props.theme}/>
             <SelectItems value={props.valueTwo} content={stateSelect["selectTwo"]} function={removeDuplicate} select={"two"} theme={props.theme}/>
-            <SquareButton button={(stateSelect["selectOne"].length !== baseState.length && stateSelect["selectTwo"].length !== baseState.length)} function={() => props.function(stateSelect["selectOne"], stateSelect["selectTwo"])}/>
+            <a onClick={
+                () => (stateSelect["selectOne"].length !== baseState.length && stateSelect["selectTwo"].length !== baseState.length) ?
+                props.function(selected["selectedOne"], selected["selectedTwo"], props.id) :
+                false
+            }>
+                <SquareButton button={(stateSelect["selectOne"].length !== baseState.length && stateSelect["selectTwo"].length !== baseState.length)}/>
+            </a>
         </>
     );
 }

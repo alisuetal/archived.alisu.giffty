@@ -11,11 +11,13 @@ export default function TextField (props){
             else{
                 return props.value;
             }
-            
         }
         else{
             if(props.type === "num"){
                 return new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(0);
+            }
+            else{
+                return "";
             }
         }
     });
@@ -29,6 +31,12 @@ export default function TextField (props){
         }
     }, [props.theme]);
     
+    function sendStatus(value, name){
+        if(props.function){
+            props.function(value, name);
+        }
+    }
+
     function inFormat(x){
         switch(x){
             case "currency":
@@ -66,20 +74,29 @@ export default function TextField (props){
 
     function writeDown(e, type){
         //pegar o dígito que mudou
-        let digit;
+        let digit; //digito
         if((e.toString().length - 1) === -1){
-            setValue("");
+            digit = ""; //se o campo tiver vazio é ""
         }
         else{
-            digit = e[e.toString().length - 1];
+            digit = e[e.toString().length - 1]; //se não, é o último caractere
         }
 
         //validar
-        if(validDigit(digit, type)){
-            setValue(e);
-
-            if(props.function !== undefined){
-                props.function(e, props.name);
+        if(digit !== ""){
+            if(validDigit(digit, type)){ //se o digito não for "", precisa ser validado
+                setValue(e);
+                sendStatus(e, props.name);
+            }
+        }
+        else{
+            if(props.type === "num"){ //se for "", define para 0 em caso de números
+                setValue("0");
+                sendStatus("0", props.name);
+            }
+            else{
+                setValue(""); //se for char type, define ""
+                sendStatus("", props.name);
             }
         }
     }
@@ -105,7 +122,7 @@ export default function TextField (props){
                 }
             break;
             default:
-                result = false;
+                result = true;
             break;
         }
         return result;

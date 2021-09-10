@@ -18,8 +18,8 @@ export default function Routes (){
     const [theme, setTheme] = React.useState(false);
     const baseSelect = <SelectItems value={+theme} content={[["Light theme", 0], ["Dark theme", 1]]} select="theme" function={changeTheme} theme={theme}/>;
 
-    function changeTheme(x){
-        if(x === "1"){
+    function changeTheme(...x){
+        if(x[0] === "1"){
             setTheme(true);
             setBackground({backgroundColor: "#222222"});
         }

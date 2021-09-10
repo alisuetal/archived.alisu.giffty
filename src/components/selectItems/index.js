@@ -24,7 +24,7 @@ export default function SelectItems (props){
 
     
     function changeSelect(e){
-        props.function(e);
+        props.function(e, props.select);
         setSelected(e);
     }
 

@@ -6,26 +6,29 @@ import EditWhite from "../../img/editWhite.svg";
 import "./index.css";
 
 export default function DarkPair (props){
-    const [style, setStyle] = React.useState();
+    const [icons, setIcons] = React.useState({"delete": "", "edit": ""});
+    const [style, setStyle] = React.useState({color: ""});
 
     React.useEffect(() => {
         if(props.theme === true){
-            setStyle({"delete": DeleteWhite, "edit": EditWhite, "color": {color: "#ffffff"}});
+            setIcons({"delete": DeleteWhite, "edit": EditWhite});
+            setStyle({color: "#ffffff"});
         }
         else{
-            setStyle({"delete": DeleteBlack, "edit": EditBlack, "color": {color: "#222222"}});
+            setIcons({"delete": DeleteBlack, "edit": EditBlack});
+            setStyle({color: "#222222"});
         }
     }, [props.theme]);
 
     return(
         <button className='darkPair'>
             <div>
-                <span style={style["color"]}>{props.nameOne}</span>
-                <img src={style["edit"]} onClick={() => props.edit(props.pairIndex)} alt="Edit" align='right'/>
+                <span style={style}>{props.nameOne}</span>
+                <img src={icons["edit"]} onClick={() => props.edit(props.pairIndex)} alt="Edit" align='right'/>
             </div>
             <div>
-                <span style={style["color"]}>{props.nameTwo}</span>
-                <img src={style["delete"]} onClick={() => props.delete(props.pairIndex)} alt="Delete" align='right'/>
+                <span style={style}>{props.nameTwo}</span>
+                <img src={icons["delete"]} onClick={() => props.delete(props.pairIndex)} alt="Delete" align='right'/>
             </div>
         </button>
     );

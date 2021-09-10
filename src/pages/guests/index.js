@@ -13,8 +13,8 @@ import "./index.css";
 export default function Guests (props){
     const [mainColor, setMainColor] = React.useState({color: ""});
     const [panelContent, setPanelContent] = React.useState(false);
-    const guests = GetGuestList();
-    const button = (guests.length >= 3);
+    const [guests, setGuests] = React.useState(GetGuestList());
+    const [button, setButton] = React.useState((guests.length >= 3));
 
     React.useEffect(() => {
         if(props.theme === true){
@@ -25,22 +25,28 @@ export default function Guests (props){
         }
     }, [props.theme]);
 
+    function updateStates(){
+        setGuests(GetGuestList());
+        setButton((GetGuestList().length >= 3));
+    }
+
     function submitDelete(index){
         DeleteGuest(index);
+        updateStates();
     }
 
     function submitEdit(...params){
         if(GetPrice() === "0" || parseInt(params[3]) <= parseInt(GetPrice())){
             EditGuest(params[0], params[1], params[2], params[3]);
+            updateStates();
         }
-        setPanelContent(false);
     }
 
     function submitGuest(...params){
         if(GetPrice() === "0" || params[2] <= GetPrice()){
             SetGuest(params[0], params[1], params[2]);
+            updateStates();
         }
-        setPanelContent(false);
     }
     
     function getEdit(x){
