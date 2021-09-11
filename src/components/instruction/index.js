@@ -2,21 +2,24 @@ import React from "react";
 import './index.css';
 
 export default function Instruction (props){
-    const [theme, setTheme] = React.useState({"mainColor": "", "secondColor": ""});
+    const [mainColor, setMainColor] = React.useState({color: ""});
+    const [secondColor, setSecondColor] = React.useState({color: ""});
 
     React.useEffect(() => {
         if(props.theme === true){
-            setTheme({"mainColor": {color: "#ffffff"}, "secondColor": {color: "#aaaaaa"}});
+            setMainColor({color: "#ffffff"});
+            setSecondColor({color: "#aaaaaa"});
         }
         else{
-            setTheme({"mainColor": {color: "#222222"}, "secondColor": {color: "#888888"}});
+            setMainColor({color: "#222222"});
+            setSecondColor({color: "#888888"});
         }
     }, [props.theme]);
 
     return(
         <div className="instruction">
-            <span style={theme["secondColor"]}>{props.number}</span>
-            <span style={theme["mainColor"]}>{props.text}</span>
+            <span style={secondColor}>{props.number}</span>
+            <span style={mainColor}>{props.text}</span>
         </div>
     );
 }
