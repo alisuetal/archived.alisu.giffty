@@ -2,7 +2,6 @@ import React from "react";
 import TextField from "../../components/textField";
 import SquareButton from "../../components/squareButton";
 import { GetPrice } from "../../script";
-import "./index.css";
 
 export default function GuestForm (props){
     const [stateButton, setStateButton] = React.useState(false);

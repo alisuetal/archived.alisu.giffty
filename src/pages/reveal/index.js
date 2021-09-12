@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../../components/header";
 import RevealButton from "../../components/revealButton";
 import { GetGuest, GetPair } from "../../script";
-import "./index.css";
 
 export default function Reveal (props){
     const [currentPair, setCurrentPair] = React.useState(0);

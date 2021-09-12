@@ -41,7 +41,7 @@ export default function Index (props){
             <p className='title' style={mainColor}>Need an app to help you host a Secret Santa?</p>
             <p className='subTitle' style={secondColor}>Enter the names, gift suggestions, and more for free!</p>
             <img className="giffty3d" alt="Giffty 3D" src={Giffty3D}/>
-            <Link to="/event-details"><Button value="Next" image={RightArrow} alt="Next icon"/></Link>
+            <Link to="/event-details"><Button value="Start" image={RightArrow} alt="Next icon"/></Link>
             <p className="bottomLink" onClick={() => howTo()}>How to use</p>
         </div>
     );

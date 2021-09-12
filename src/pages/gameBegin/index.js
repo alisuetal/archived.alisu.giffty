@@ -4,7 +4,6 @@ import Header from "../../components/header";
 import Button from "../../components/button";
 import RightArrow from "../../img/rightArrow.svg";
 import Instruction from "../../components/instruction";
-import "./index.css";
 import { SetPairs } from "../../script";
 
 export default function GameBegin (props){

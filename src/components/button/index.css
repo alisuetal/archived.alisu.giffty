@@ -15,6 +15,18 @@
     cursor: pointer;
 }
 
+.bottomButton:hover {
+    background-color: #6b32a3;
+}
+
+.disabled{
+    background-color: #a284c2 !important;
+}
+
+.disabled:hover{
+    background-color: #a284c2 !important;
+}
+
 .bottomButton img{
     height: 4vh;
 }

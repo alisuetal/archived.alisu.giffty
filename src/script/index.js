@@ -187,8 +187,9 @@ export function DeleteDarkPair(index){
 
 //guests functions
 export function SetGuest(guest, gift, giftPrice){
-    if(gift === null){
-        gift = "";
+    if(gift === "" || gift === null){
+        gift = "...";
+        giftPrice = "0";
     }
 
     if(giftPrice === null){

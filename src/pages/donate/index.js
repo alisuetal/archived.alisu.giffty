@@ -4,7 +4,6 @@ import Giffty3D from "../../img/giffty3d.svg";
 import Button from "../../components/button";
 import Contact from "../../img/message.svg";
 //import DonateIcon from "../../img/money.svg";
-import "./index.css";
 
 export default function Donate (props){
     const [mainColor, setMainColor] = React.useState({color: ""});

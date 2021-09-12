@@ -5,7 +5,6 @@ import Button from "../../components/button";
 import RightArrow from "../../img/rightArrow.svg";
 import TextField from "../../components/textField";
 import { SetPrice , GetPrice } from "../../script";
-import "./index.css";
 
 export default function EventDetails (props){
     const [mainColor, setMainColor] = React.useState({color: ""});

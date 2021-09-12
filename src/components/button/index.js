@@ -2,19 +2,20 @@ import React from "react";
 import './index.css';
 
 export default function Button (props){
-    const [style, setStyle] = React.useState();
+    const [buttonClass, setButtonClass] = React.useState();
 
     React.useEffect(() => {
         if(props.button === true || props.button === undefined){
-            setStyle({backgroundColor: "#8542c8"});
+            setButtonClass("bottomButton");
+
         }
         else if(props.button === false){
-            setStyle({backgroundColor: "#a284c2"});
+            setButtonClass("bottomButton disabled");
         }
     }, [props.button]);
 
     return(
-        <button style={style} className="bottomButton">
+        <button className={buttonClass}>
             {props.value}
             <img src={props.image} alt="Action icon" align="right"/>
         </button>
