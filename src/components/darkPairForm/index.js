@@ -4,7 +4,7 @@ import SelectItems from "../selectItems";
 import SquareButton from "../squareButton";
 
 export default function DarkPairForm (props){
-    const [baseState, setBaseState] = React.useState([["Select guest", -1], ...GetGuestList().map((x, y) => ([x[0], y]))]);
+    const baseState = [["Select guest", -1], ...GetGuestList().map((x, y) => ([x[0], y]))];
     const [stateSelect, setStateSelect] = React.useState({"selectOne": baseState, "selectTwo": baseState});
     const [selected, setSelected] = React.useState({"selectedOne": "", "selectedTwo": ""});
 
@@ -33,7 +33,7 @@ export default function DarkPairForm (props){
         <>
             <SelectItems value={props.valueOne} content={stateSelect["selectOne"]} function={removeDuplicate} select={"one"} theme={props.theme}/>
             <SelectItems value={props.valueTwo} content={stateSelect["selectTwo"]} function={removeDuplicate} select={"two"} theme={props.theme}/>
-            <a onClick={
+            <a href="#" onClick={
                 () => (stateSelect["selectOne"].length !== baseState.length && stateSelect["selectTwo"].length !== baseState.length) ?
                 props.function(selected["selectedOne"], selected["selectedTwo"], props.id) :
                 false

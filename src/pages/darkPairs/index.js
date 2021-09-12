@@ -7,7 +7,7 @@ import DarkPair from "../../components/darkPair";
 import AddItem from "../../components/addItem";
 import InfoBlack from "../../img/infoBlack.svg";
 import InfoWhite from "../../img/infoWhite.svg";
-import { GetDarkPair, GetDarkPairs, EditDarkPair, DeleteDarkPair, SetDarkPair, GetGuestList, GetGuest, DeleteGuest } from "../../script";
+import { GetDarkPair, GetDarkPairs, EditDarkPair, DeleteDarkPair, SetDarkPair, GetGuest} from "../../script";
 import BottomPanel from "../../components/bottomPanel";
 import "./index.css";
 import DarkPairForm from "../../components/darkPairForm";

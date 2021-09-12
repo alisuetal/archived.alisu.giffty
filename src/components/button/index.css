@@ -1,4 +1,4 @@
-.button {
+.bottomButton {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,6 +15,6 @@
     cursor: pointer;
 }
 
-.button img{
+.bottomButton img{
     height: 4vh;
 }

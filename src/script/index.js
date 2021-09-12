@@ -66,9 +66,14 @@ function GuestIsAvailabe(b){
     }
 }
 
-function GetPairs(){
+export function GetPairs(){
     let pairList = JSON.parse(sessionStorage.getItem(2));
     return pairList;
+}
+
+export function GetPair(index){
+    let pairList = JSON.parse(sessionStorage.getItem(2));
+    return pairList[index];
 }
 
 //dark pairs functions

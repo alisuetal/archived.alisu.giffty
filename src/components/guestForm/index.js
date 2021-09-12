@@ -55,6 +55,8 @@ export default function GuestForm (props){
             case "giftPrice":
                 setStateField((state) => ([state[0], state[1], field]));
             break;
+            default:
+            break;
         }
     }
 
@@ -64,7 +66,7 @@ export default function GuestForm (props){
             <TextField value={stateField[1]} name="giftSuggestion" function={saveField} theme={props.theme} placeholder="Gift suggestion"/>
             <div>
                 <TextField type="num" value={stateField[2]} name="giftPrice" function={saveField} format="currency" theme={props.theme} placeholder="Gift price"/>
-                <a onClick={() => (stateButton) ? sendFuction(stateField) : false}><SquareButton button={stateButton}/></a>
+                <a href="#" onClick={() => (stateButton) ? sendFuction(stateField) : false}><SquareButton button={stateButton}/></a>
             </div>
         </div>
     );

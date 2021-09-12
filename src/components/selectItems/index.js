@@ -4,7 +4,7 @@ import DownWhite from "../../img/downWhite.svg";
 import './index.css';
 
 export default function SelectItems (props){
-    const [style, setStyle] = React.useState({color: "#222222", backgroundImage: "url(" + DownBlack + ")"});
+    const [style, setStyle] = React.useState();
     const [selected, setSelected] = React.useState("-1");
 
     React.useEffect(() => {

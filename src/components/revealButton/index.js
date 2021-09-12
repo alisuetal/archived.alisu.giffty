@@ -1,7 +1,11 @@
 import React from "react";
 import PressNHold from "../../img/pressAndHold.svg";
 import Ellipse from "../../img/ellipse.svg";
+import Button from "../button";
+import RightArrow from "../../img/rightArrow.svg";
+import { Link } from "react-router-dom";
 import './index.css';
+import { GetPairs } from "../../script";
 
 export default function RevealButton (props){
     const [holderState, setHolderState] = React.useState({transition: "0.5s", backgroundSize: "0px", backgroundImage: Ellipse}); //background
@@ -9,20 +13,19 @@ export default function RevealButton (props){
     const [information, setInformation] = React.useState({opacity: 0}); //info
     const [tOut, setTOut] = React.useState(false);
     const [guestTwo, setGuestTwo] = React.useState("...");
-    const [mainColor, setMainColor] = React.useState({color: "#222222"});
-
+    const [mainColor, setMainColor] = React.useState();
 
     React.useEffect(() => {
         if(props.theme === true){
-            setMainColor({mainColor: {color: "#ffffff"}});
+            setMainColor({color: "#ffffff"});
         }
         else{
-            setMainColor({mainColor: {color: "#222222"}});
+            setMainColor({color: "#222222"});
         }
     }, [props.theme]);
 
     function revealDetail(){
-        setHolderState((state) => ({...state, background: "none"}));
+        setHolderState({background: "none"});
         setButtonState({backgroundColor: "transparent", backgroundImage: "none", cursor: "default"});
         setInformation({opacity: 1});
         setGuestTwo(props.guestTwo);
@@ -30,17 +33,17 @@ export default function RevealButton (props){
 
     function startAnimation(){
         if(buttonState["backgroundColor"] !== "transparent"){
-            setHolderState((state) => ({...state, transition: "2.2s", backgroundSize: "140%"}));
+            setHolderState({transition: "2.2s", backgroundSize: "140%"});
             setTOut(setTimeout(() => {
                 revealDetail();
-                setTOut((state) => (clearTimeout(state)));
+                setTOut(clearTimeout(tOut));
             }, 2000));
         }
     }
     
     function stopAnimation(){
-        setHolderState((state) => ({...state, transition: "0.5s", backgroundSize: "0vh"}));
-        setTOut((state) => (clearTimeout(state)));
+        setHolderState({transition: "0.5s", backgroundSize: "0vh"});
+        setTOut(clearTimeout(tOut));
     }
 
     return(
@@ -50,9 +53,14 @@ export default function RevealButton (props){
                 <div className="buttonBackground" style={holderState}>
                     <div className="guestInfo" style={information}>
                         <p className="title" style={mainColor}>Gift suggestion</p>
-                        <button style={mainColor}>{props.giftSuggestion}</button>
+                        <button className="fieldLike" style={mainColor}>{props.giftSuggestion}</button>
                         <p className="title" style={mainColor}>Gift price (approx.)</p>
-                        <button style={mainColor}>{new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(props.giftPrice)}</button>
+                        <button className="fieldLike" style={mainColor}>{new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(props.giftPrice)}</button>
+                        <Link
+                            to={() => (props.currentPair === (GetPairs().length - 1)) ? ("/donate") : false}
+                            onClick={() => (props.currentPair !== (GetPairs().length - 1)) ? (props.function((e) => (e + 1))) : false}>
+                            <Button value="Next" image={RightArrow} alt="Next icon"/>
+                        </Link>
                     </div>
                 </div>
             </div>

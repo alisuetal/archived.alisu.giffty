@@ -9,8 +9,8 @@ import SettingsWhite from "../../img/settingsWhite.svg";
 import "./index.css";
 
 export default function Header (props){
-    const [headerState, setHeaderState] = React.useState({"back": false, "img": []});
-    const [icon, setIcon] = React.useState(SettingsBlack);
+    const [headerState, setHeaderState] = React.useState({"back": ""});
+    const [icon, setIcon] = React.useState();
 
     React.useEffect(() => {
         if(props.theme === true){

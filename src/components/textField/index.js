@@ -52,7 +52,6 @@ export default function TextField (props){
             break;
             default:
                 return value;
-            break;
         }
     }
 
@@ -65,10 +64,8 @@ export default function TextField (props){
                 else{
                     return new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(0);
                 }
-            break;
             default:
                 return value;
-            break;
         }
     }
 

@@ -4,25 +4,21 @@ import LineBlack from "../../img/lineBlack.svg";
 import './index.css';
 
 export default function BottomPanel (props){
-    const theme = props.theme;
     const content = props.content;
-
     const [iconPanel, setIcon] = React.useState(LineBlack);
 
     const[styleHolder, setStyleHolder] = React.useState({
         "opacity": {opacity: "0"},
         "display": {display: "none"},
-        "background": {backgroundColor: "rgba(200, 200, 200, 0.5)"}
     });
 
     const[stylePanel, setStylePanel] = React.useState({
         "margin": {marginBottom: "-100vh"},
         "display": {display: "none"},
-        "background": {backgroundColor: "rgba(255, 255, 255, 0.7)"}
     });
 
     React.useEffect(() => {
-        if(theme === true){
+        if(props.theme === true){
             setStyleHolder((style) => ({...style, "background": {backgroundColor: "rgba(10, 10, 10, 0.5)"}}));
             setStylePanel((style) => ({...style, "background": {backgroundColor: "rgba(0, 0, 0, 0.7)"}}));
             setIcon(LineWhite);
@@ -32,7 +28,7 @@ export default function BottomPanel (props){
             setStylePanel((style) => ({...style, "background": {backgroundColor: "rgba(255, 255, 255, 0.7)"}}));
             setIcon(LineBlack);
         }
-    }, [theme]);
+    }, [props.theme]);
 
     React.useEffect(() => {
         setStyleHolder((style) => ({...style, "display": {display: "flex"}}));

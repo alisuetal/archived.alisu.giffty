@@ -2,8 +2,8 @@ import React from "react";
 import './index.css';
 
 export default function Instruction (props){
-    const [mainColor, setMainColor] = React.useState({color: ""});
-    const [secondColor, setSecondColor] = React.useState({color: ""});
+    const [mainColor, setMainColor] = React.useState();
+    const [secondColor, setSecondColor] = React.useState();
 
     React.useEffect(() => {
         if(props.theme === true){

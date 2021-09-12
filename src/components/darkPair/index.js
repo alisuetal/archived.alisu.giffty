@@ -7,7 +7,7 @@ import "./index.css";
 
 export default function DarkPair (props){
     const [icons, setIcons] = React.useState({"delete": "", "edit": ""});
-    const [style, setStyle] = React.useState({color: ""});
+    const [style, setStyle] = React.useState();
 
     React.useEffect(() => {
         if(props.theme === true){

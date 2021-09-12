@@ -6,13 +6,8 @@ import RightArrow from "../../img/rightArrow.svg";
 import TextField from "../../components/textField";
 import { SetPrice , GetPrice } from "../../script";
 import "./index.css";
-import { SetGuest } from "../../script";
 
 export default function EventDetails (props){
-    sessionStorage.setItem(1, '[]');
-    SetGuest("Guest 1", "Gift 1", "1");
-    SetGuest("Guest 2", "Gift 2", "2");
-    SetGuest("Guest 3", "Gift 3", "3");
     const [mainColor, setMainColor] = React.useState({color: ""});
     const [fieldValue, setFieldValue] = React.useState("0");
 

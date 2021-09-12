@@ -6,13 +6,16 @@ import EditWhite from "../../img/editWhite.svg";
 import "./index.css";
 
 export default function AddedGuest (props){
-    const[style, setStyle] = React.useState({"delete": DeleteBlack, "edit": EditBlack, "color": {color: "#222222"}});
+    const[style, setStyle] = React.useState({"delete": "false", "edit": "false", "color": {}});
 
     React.useEffect(() => {
         if(props.theme === true){
             setStyle({"delete": DeleteWhite, "edit": EditWhite, "color": {color: "#ffffff"}});
         }
-    }, [])
+        else{
+            setStyle({"delete": DeleteBlack, "edit": EditBlack, "color": {color: "#222222"}});
+        }
+    }, [props.theme])
 
     return(
         <button className="addedGuest">
