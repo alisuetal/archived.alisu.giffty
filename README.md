@@ -1,6 +1,6 @@
 ![enter image description here](https://i.imgur.com/E1wTIaw_d.webp?maxwidth=512&fidelity=grand)
 
-Giffty is an open-source Secret Santa app created with React.JS that functions locally in your browser.
+Giffty is an open-source Secret Santa app created with React.JS that functions locally in your browser through the link: https://giffty-app.netlify.com.
 
 
 # How does it work
