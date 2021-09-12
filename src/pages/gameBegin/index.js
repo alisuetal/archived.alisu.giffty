@@ -5,6 +5,7 @@ import Button from "../../components/button";
 import RightArrow from "../../img/rightArrow.svg";
 import Instruction from "../../components/instruction";
 import "./index.css";
+import { SetPairs } from "../../script";
 
 export default function GameBegin (props){
     const [mainColor, setMainColor] = React.useState({color: ""});
@@ -26,7 +27,7 @@ export default function GameBegin (props){
             <Instruction theme={props.theme} number={1} text="Pass the device to the one whom name shows on the screen."/>
             <Instruction theme={props.theme} number={2} text={stepTwo}/>
             <Instruction theme={props.theme} number={3} text="Repeat step 01."/>
-            <Link to="/reveal"><Button value="Next" image={RightArrow} alt="Next icon"/></Link>
+            <Link to="/reveal" onClick={() => SetPairs()}><Button value="Next" image={RightArrow} alt="Next icon"/></Link>
         </div>
     );
 }

@@ -12,44 +12,69 @@ if(sessionStorage.getItem(3) === null){
     sessionStorage.setItem(3, '[]'); //lists of dark pairs
 }
 
-//dark pairs functions
-export function verifyDarkPair(...params){
-    if(params[0] !== params[1]){
-        let state = true;
-        for(let x = 0; x < 2; x++){
-            let qt = 0 ;
+//pairs functions
+export function SetPairs(){
+    while(JSON.parse(sessionStorage.getItem(2)).length !== GetGuestList().length){
+        sessionStorage.setItem(2, '[]');
+        for(let x = 0; x < GetGuestList().length; x++){
+            let pairsList = JSON.parse(sessionStorage.getItem(2)), randomPair = GetRandomPair(x.toString());
 
-            for(let y = 0; y < params[2].length; y++){
-                if(params[2][y].includes(params[0]) && params[2][y].includes(params[1])){
-                    state = false;
-                    break;
-                }
-                else if(params[2][y].includes(params[x])){
-                    qt++;
-                }
+            if(randomPair !== false){
+                pairsList.push(randomPair);
             }
 
-            if((GetGuestList().length % 2) === 1){
-                if(((GetGuestList().length - 1) - qt) <= 2){
-                    state = false;
-                }
-            }
-            else{
-                if(((GetGuestList().length - 1) - qt) <= 1){
-                    state = false;
-                }
-            }
+            sessionStorage.setItem(2, JSON.stringify(pairsList));
         }
-        return state;
+    }
+}
+
+function GetRandomPair(a){
+    let triedGuests = [];
+    while(triedGuests.length !== (GetGuestList().length - 1)){
+        let guestTwo = (Math.random() * ((GetGuestList().length - 1) - 0) + 0).toFixed(0);
+        if(VerifyPair(a, guestTwo)){
+            return [a, guestTwo];
+        }
+        else if(!triedGuests.includes(guestTwo)){
+            triedGuests.push(guestTwo);
+        }
+    }
+    return false;
+}
+
+function VerifyPair(a, b){
+    if(IsDarkPair(a, b) === false && a !== b && GuestIsAvailabe(b)){
+        return true;
     }
     else{
         return false;
     }
 }
 
+function GuestIsAvailabe(b){
+    let pairsList = GetPairs();
+    if(pairsList.length > 0){
+        for(let y = 0; y < pairsList.length; y++){
+            if(pairsList[y][1].toString() === b){
+                return false;
+            }
+        }
+        return true;
+    }
+    else{
+        return true;
+    }
+}
+
+function GetPairs(){
+    let pairList = JSON.parse(sessionStorage.getItem(2));
+    return pairList;
+}
+
+//dark pairs functions
 export function SetDarkPair(guestOne, guestTwo){
     let darkPairList = GetDarkPairs();
-    if(verifyDarkPair(guestOne, guestTwo, darkPairList)){
+    if(VerifyDarkPair(guestOne, guestTwo)){
         darkPairList.push([guestOne, guestTwo]);
         sessionStorage.setItem(3, JSON.stringify(darkPairList));
 
@@ -58,6 +83,63 @@ export function SetDarkPair(guestOne, guestTwo){
     else{
         return false;
     }
+}
+
+function VerifyDarkPair(a, b){
+    if(a !== b){
+        if(IsDarkPair(a, b) === false){
+            if(AvailabeDarkPair(InDarkPairs(a)) && AvailabeDarkPair(InDarkPairs(b))){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return false;
+    }
+}
+
+function IsDarkPair(a, b){
+    for(let y = 0; y < GetDarkPairs().length; y++){
+        if(GetDarkPairs()[y].includes(a) && GetDarkPairs()[y].includes(b)){
+            return true;
+        }
+    }
+    return false;
+}
+
+function AvailabeDarkPair(x){
+    if((GetGuestList().length % 2) === 1){
+        if(((GetGuestList().length - 1) - x) <= 2){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    else{
+        if(((GetGuestList().length - 1) - x) <= 1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+}
+
+function InDarkPairs(a){
+    let x = 0;
+    for(let y = 0; y < GetDarkPairs().length; y++){
+        if(GetDarkPairs()[y].includes(a)){
+            x++;
+        }
+    }
+    return x;
 }
 
 export function GetDarkPairs(){
@@ -71,15 +153,14 @@ export function GetDarkPair(index){
 }
 
 export function EditDarkPair(index, guestOne, guestTwo){
-    console.log(index, guestOne, guestTwo);
     let darkPairList = GetDarkPairs();
-    if(GetDarkPair(index).includes(guestOne) && GetDarkPair(index).includes(guestTwo)){ //verificando se o par foi modificado de fato
+    if(IsDarkPair(guestOne, guestTwo)){ //verificando se o par foi modificado de fato
         return true
     }
     else{
         let previousPair = darkPairList[index];
         darkPairList[index] = ["editing", "editing"]; //removendo o par temporariamente para verificação, salvando o index
-        if(verifyDarkPair(guestOne, guestTwo, darkPairList)){
+        if(VerifyDarkPair(guestOne, guestTwo)){
             darkPairList[index] = [guestOne, guestTwo]; //realocando, caso possível
             sessionStorage.setItem(3, JSON.stringify(darkPairList));
     
