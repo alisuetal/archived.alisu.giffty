@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+![enter image description here](https://i.imgur.com/E1wTIaw_d.webp?maxwidth=512&fidelity=grand)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Giffty is an open-source Secret Santa app created with React.JS that functions locally in your browser.
 
-## Available Scripts
 
-In the project directory, you can run:
+# How does it work
 
-### `npm start`
+You can set all guest list with their gift suggestions and approximate prices for free. No need for e-mails or accounts. Pairs results are always right, and you can even set Dark Pairs (read more about it below).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## No accounts or e-mails needed
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+After setting every detail, the pairs are generated and are shown to each person, passing the device to the name whom shows on the screen. 
+> Note: If there's two or more person with the same name, you might want to save their names in a way to identify each one.
 
-### `npm test`
+## Gifts and prices
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Desired gifts can be set by every guest, with the approximate price of it as well. The host can set a price limit so every desired gift stays on budget.
 
-### `npm run build`
+## Dark Pairs
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Sometimes not everybody can be friends in a group, and that's okay. The Dark Pairs function allow the host to set a pair of people who don't get along too well to prevet them from picking each other.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Additional notes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Since the project still on its beta stage, some functions may not function as it's supposed to. And that's why I would like to ask you to open an issue everytime you find a bug or a malfunction.
 
-### `npm run eject`
+## Issues
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+If you do find a bug, you can open an issue telling me with your best words what happened and, most importantly, **how it happened**. Then I'll do my best to fix it. :)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Suggestions
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Suggestions are welcome as well. If you have an idea of what could be added to the project or what could be improved, I would really like to know it.
+> Some ideas may not work very well with the project, or may be to hard to develop, so I'm sorry if I can't make your suggestion come true. :(
 
-## Learn More
+## Donations
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Even though the project is 100% free. You can always help me by sending a change. Any value will make me very happy. :)
+> I haven't figured how to make it happen yet, so it may take a while.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Thank you for reading all these. 🏵️
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> “I have not failed. I've just found 10,000 ways that won't work.”  
+― Thomas A. Edison
