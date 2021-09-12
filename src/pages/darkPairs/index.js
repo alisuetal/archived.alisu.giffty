@@ -17,6 +17,7 @@ export default function DarkPairs (props){
     const [icon, setIcon] = React.useState();
     const [darkPairs, setDarkPairs] = React.useState(GetDarkPairs());
     const [panelContent, setPanelContent] = React.useState(false);
+    const buttonValue = (appendDarkPairs().length === 0) ? ("Skip") : ("Next");
 
     React.useEffect(() => {
         if(props.theme === true){
@@ -92,7 +93,9 @@ export default function DarkPairs (props){
                 {(appendDarkPairs().length !== 0) ? appendDarkPairs().map((x) => (x)) : false}
                 <AddItem function={getAddDarkPair} text="Add Dark Pair"/>
             </div>
-            <Link to="/game-begin"><Button value="Next" image={RightArrow} alt="Next icon"/></Link>
+            <Link to="/game-begin">
+                <Button value={buttonValue} image={RightArrow} alt="Next icon"/>
+            </Link>
         </div>
     );
 

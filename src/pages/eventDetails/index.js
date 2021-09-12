@@ -10,6 +10,7 @@ import "./index.css";
 export default function EventDetails (props){
     const [mainColor, setMainColor] = React.useState({color: ""});
     const [fieldValue, setFieldValue] = React.useState("0");
+    const buttonValue = (fieldValue === "0") ? ("Skip") : ("Next");
 
     React.useEffect(() => {
         if(props.theme === true){
@@ -20,13 +21,17 @@ export default function EventDetails (props){
         }
     }, [props.theme]);
 
+    function saveField(...params){
+        setFieldValue(params[0]);
+    }
+
     return(
         <div className="page">
             <Header step={1} theme={props.theme} link="/" headerFunction={props.headerFunction}/>
             <p className='title' style={mainColor}>Let's set the budget first.</p>
             <span style={{height: "36vh"}}/>
-            <TextField value={GetPrice()} type="num" function={setFieldValue} theme={props.theme} format="currency" placeholder="Gift price (optional)"/>
-            <Link to="/guests" onClick={() => SetPrice(fieldValue)}><Button value="Next" image={RightArrow} alt="Next icon"/></Link>
+            <TextField value={GetPrice()} type="num" function={saveField} theme={props.theme} format="currency" placeholder="Gift price (optional)"/>
+            <Link to="/guests" onClick={() => SetPrice(fieldValue)}><Button value={buttonValue} image={RightArrow} alt="Next icon"/></Link>
         </div>
     );
 }
