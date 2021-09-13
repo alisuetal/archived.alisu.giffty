@@ -10,7 +10,7 @@ You can set all guest list with their gift suggestions and approximate prices fo
 ## No accounts or e-mails needed
 
 After setting every detail, the pairs are generated and are shown to each person, passing the device to the name whom shows on the screen. 
-> Note: If there's two or more person with the same name, you might want to save their names in a way to identify each one.
+> Note: If there's two or more guests with the same name, you might want to save their names in a way to identify each one.
 
 ## Gifts and prices
 
@@ -18,11 +18,11 @@ Desired gifts can be set by every guest, with the approximate price of it as wel
 
 ## Dark Pairs
 
-Sometimes not everybody can be friends in a group, and that's okay. The Dark Pairs function allow the host to set a pair of people who don't get along too well to prevet them from picking each other.
+Sometimes not everybody can be friends in a group, and that's okay. The Dark Pairs function allows the host to set a pair of guests who don't get along too well to prevent them from picking each other.
 
 # Additional notes
 
-Since the project still on its beta stage, some functions may not function as it's supposed to. And that's why I would like to ask you to open an issue everytime you find a bug or a malfunction.
+Since the project still on its beta stage, some functions may not work as it's supposed to. And that's why I would like to ask you to open an issue everytime you find a bug or a malfunction.
 
 ## Issues
 
@@ -36,7 +36,7 @@ Suggestions are welcome as well. If you have an idea of what could be added to t
 
 ## Donations
 
-Even though the project is 100% free. You can always help me by sending a change. Any value will make me very happy. :)
+Even though the project is 100% free, you can always help me by sending a change. Any value will make me very happy. :)
 > I haven't figured how to make it happen yet, so it may take a while.
 
 ### Thank you for reading all these. 🏵️
