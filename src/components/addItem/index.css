@@ -22,3 +22,21 @@
 .addItem p{
     padding: 1vh 0 1vh 0;
 }
+
+@media only screen and (max-width: 768px) and (max-height: 560px) {
+    .addItem{
+        border-radius: 10px;
+        height: 50px;
+        margin-top: 16px !important;
+        font-size: 20px;
+        padding: 0px 14px;
+    }
+
+    .addItem p{
+        padding: 6px 0px;
+    }
+
+    .addItem img{
+        height: 20px;
+    }
+}

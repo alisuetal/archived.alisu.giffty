@@ -7,11 +7,14 @@
 
 .goBack{
     height: 4.5vh;
+    cursor: pointer;
 }
 
 .settingsIcon{
+    height: 5.5vh;
     cursor: pointer;
 }
+
 
 .headerSteps{
     display: flex;
@@ -24,12 +27,24 @@
     padding: 0vh 2vh 0vh 2vh;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 768px) and (max-height: 560px){
     .goBack{
-        height: 3.5vh;
+        height: 22px;
     }
 
     .settingsIcon{
-        height: 5.5vh;
+        height: 30px;
+    }
+
+    .headerSteps img:nth-child(2){
+        padding: 0px 12px;
+    }
+
+    .headerSteps img{
+        height: 8px;
+    }
+
+    .header{
+        margin-top: 12px;
     }
 }

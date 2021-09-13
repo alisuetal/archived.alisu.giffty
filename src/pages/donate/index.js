@@ -3,6 +3,7 @@ import Header from "../../components/header";
 import Giffty3D from "../../img/giffty3d.svg";
 import Button from "../../components/button";
 import Contact from "../../img/message.svg";
+import "./index.css";
 //import DonateIcon from "../../img/money.svg";
 
 export default function Donate (props){

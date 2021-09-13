@@ -27,3 +27,21 @@
 .addedGuest div > img:nth-of-type(1){
     margin-right: 1vh;
 }
+
+@media only screen and (max-width: 768px) and (max-height: 560px) {
+    .addedGuest{
+        border-radius: 10px;
+        height: 50px;
+        margin-top: 16px !important;
+        font-size: 20px;
+        padding: 0px 14px;
+    }
+
+    .addedGuest p{
+        padding: 6px 0px;
+    }
+
+    .addedGuest img{
+        height: 20px;
+    }
+}
