@@ -90,7 +90,7 @@ export function SetDarkPair(guestOne, guestTwo){
     }
 }
 
-function VerifyDarkPair(a, b){
+export function VerifyDarkPair(a, b){
     if(a !== b){
         if(IsDarkPair(a, b) === false){
             if(AvailabeDarkPair(InDarkPairs(a)) && AvailabeDarkPair(InDarkPairs(b))){

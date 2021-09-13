@@ -31,6 +31,12 @@ export default function BottomPanel (props){
     }, [props.theme]);
 
     React.useEffect(() => {
+        if(props.unmountTime === true){
+            unmount();
+        }
+    }, [props.unmountTime]);
+
+    React.useEffect(() => {
         setStyleHolder((style) => ({...style, "display": {display: "flex"}}));
         setStylePanel((style) => ({...style, "display": {display: "block"}}));
         setTimeout(() => {

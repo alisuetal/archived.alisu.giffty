@@ -1,5 +1,5 @@
 import React from "react";
-import { GetGuestList } from "../../script";
+import { GetGuestList, VerifyDarkPair } from "../../script";
 import SelectItems from "../selectItems";
 import SquareButton from "../squareButton";
 
@@ -38,7 +38,7 @@ export default function DarkPairForm (props){
                 props.function(selected["selectedOne"], selected["selectedTwo"], props.id) :
                 false
             }>
-                <SquareButton button={(stateSelect["selectOne"].length !== baseState.length && stateSelect["selectTwo"].length !== baseState.length)}/>
+                <SquareButton button={(stateSelect["selectOne"].length !== baseState.length && stateSelect["selectTwo"].length !== baseState.length && VerifyDarkPair(stateSelect["selectOne"], stateSelect["selectTwo"]))}/>
             </a>
         </>
     );

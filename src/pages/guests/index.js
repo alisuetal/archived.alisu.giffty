@@ -15,6 +15,7 @@ export default function Guests (props){
     const [panelContent, setPanelContent] = React.useState(false);
     const [guests, setGuests] = React.useState(GetGuestList());
     const [button, setButton] = React.useState((guests.length >= 3));
+    const [unmountPanel, setUnmountPanel] = React.useState(false);
 
     React.useEffect(() => {
         if(props.theme === true){
@@ -39,6 +40,7 @@ export default function Guests (props){
         if(GetPrice() === "0" || parseInt(params[3]) <= parseInt(GetPrice())){
             EditGuest(params[0], params[1], params[2], params[3]);
             updateStates();
+            setUnmountPanel(true);
         }
     }
 
@@ -46,16 +48,19 @@ export default function Guests (props){
         if(GetPrice() === "0" || params[2] <= GetPrice()){
             SetGuest(params[0], params[1], params[2]);
             updateStates();
+            setUnmountPanel(true);
         }
     }
     
     function getEdit(x){
+        setUnmountPanel(false);
         setPanelContent(
             <GuestForm name={GetGuest(x)[0]} giftSuggestion={GetGuest(x)[1]} giftPrice={GetGuest(x)[2]} theme={props.theme} function={submitEdit} to="edit" id={x}/>
         );
     }
 
     function getAddGuest(){
+        setUnmountPanel(false);
         setPanelContent(
             <GuestForm theme={props.theme} function={submitGuest} to="add"/>
         );
@@ -73,7 +78,7 @@ export default function Guests (props){
 
     return(
         <div className="page">
-            {(panelContent) ? <BottomPanel theme={props.theme} closePanel={() => setPanelContent(false)} content={panelContent}/> : false}
+            {(panelContent) ? <BottomPanel theme={props.theme} closePanel={() => setPanelContent(false)} unmountTime={unmountPanel} content={panelContent}/> : false}
             <Header step={2} theme={props.theme} link="/event-details" headerFunction={props.headerFunction}/>
             <p className='title' style={mainColor}>Set the guests.</p>
             <div className="guestList">

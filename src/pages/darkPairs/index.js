@@ -18,6 +18,7 @@ export default function DarkPairs (props){
     const [darkPairs, setDarkPairs] = React.useState(GetDarkPairs());
     const [panelContent, setPanelContent] = React.useState(false);
     const buttonValue = (appendDarkPairs().length === 0) ? ("Skip") : ("Next");
+    const [unmountPanel, setUnmountPanel] = React.useState(false);
 
     React.useEffect(() => {
         if(props.theme === true){
@@ -51,16 +52,19 @@ export default function DarkPairs (props){
     function submitEdit(...params){
         if(EditDarkPair(params[2], params[0], params[1])){
             updateStates();
+            setUnmountPanel(true);
         }
     }
 
     function submitDarkPair(...params){
         if(SetDarkPair(params[0], params[1])){
             updateStates();
+            setUnmountPanel(true);
         }
     }
     
     function getEdit(x){
+        setUnmountPanel(false);
         let y = GetDarkPair(x);
         setPanelContent(
             <DarkPairForm valueOne={y[0]} valueTwo={y[1]} function={submitEdit} theme={props.theme} id={x}/>
@@ -68,6 +72,7 @@ export default function DarkPairs (props){
     }
 
     function getAddDarkPair(){
+        setUnmountPanel(false);
         setPanelContent(
             <DarkPairForm function={submitDarkPair} theme={props.theme}/>
         );
@@ -83,7 +88,7 @@ export default function DarkPairs (props){
 
     return(
         <div className="page">
-            {(panelContent) ? <BottomPanel theme={props.theme} closePanel={() => setPanelContent(false)} content={panelContent}/> : false}
+            {(panelContent) ? <BottomPanel theme={props.theme} closePanel={() => setPanelContent(false)} unmountTime={unmountPanel} content={panelContent}/> : false}
             <Header step={3} theme={props.theme} link="/guests" headerFunction={props.headerFunction}/>
             <p className='title' style={mainColor}>
                 Would you like to set any dark pairs?
