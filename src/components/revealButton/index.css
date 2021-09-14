@@ -1,6 +1,6 @@
 .revealButton {
     width: 100%;
-    min-height: 40vh;
+    height: 74vh;
     border-radius: 2vh;
     overflow: hidden;
     border: none;
@@ -14,6 +14,9 @@
     background-position: center;
     background-size: 35vh;
     background-repeat: no-repeat;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
 }
 
 .buttonBackground{
@@ -25,8 +28,12 @@
 }
 
 .guestInfo{
+    height: 100%;
     opacity: 0;
     transition: 1.6s;
+    display: none;
+    flex-flow: column;
+    justify-content: space-between;
 }
 
 .guestInfo p:nth-of-type(2){

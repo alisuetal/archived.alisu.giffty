@@ -24,8 +24,10 @@ export default function Reveal (props){
 
     return(
         <div className="page">
-            <Header back={0} theme={props.theme} headerFunction={props.headerFunction}/>
-            {appendPair()}
+            <div>
+                <Header back={0} theme={props.theme} headerFunction={props.headerFunction}/>
+                {appendPair()}
+            </div>
         </div>
     );
 }

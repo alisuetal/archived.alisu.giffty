@@ -26,11 +26,15 @@ export default function EventDetails (props){
 
     return(
         <div className="page">
-            <Header step={1} theme={props.theme} link="/" headerFunction={props.headerFunction}/>
-            <p className='title' style={mainColor}>Let's set the budget first.</p>
-            <span style={{height: "36vh"}}/>
-            <TextField value={GetPrice()} type="num" function={saveField} theme={props.theme} format="currency" placeholder="Gift price (optional)"/>
-            <Link to="/guests" onClick={() => SetPrice(fieldValue)}><Button value={buttonValue} image={RightArrow} alt="Next icon"/></Link>
+            <div>
+                <Header step={1} theme={props.theme} link="/" headerFunction={props.headerFunction}/>
+                <p className='title' style={mainColor}>Let's set the budget first.</p>
+            </div>
+            <span style={{height: "30vh"}}/>
+            <div>
+                <TextField value={GetPrice()} type="num" function={saveField} theme={props.theme} format="currency" placeholder="Gift price (optional)"/>
+                <Link to="/guests" onClick={() => SetPrice(fieldValue)}><Button value={buttonValue} image={RightArrow} alt="Next icon"/></Link>
+            </div>
         </div>
     );
 }

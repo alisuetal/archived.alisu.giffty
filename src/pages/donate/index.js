@@ -23,9 +23,11 @@ export default function Donate (props){
 
     return(
         <div className="page">
-            <Header step={0} theme={props.theme} headerFunction={props.headerFunction}/>
-            <p className='title' style={mainColor}>The game is on!</p>
-            <p className='subTitle' style={secondColor}>Hope you enjoyed using the app. Donating helps keep the project online.</p>
+            <div>
+                <Header step={0} theme={props.theme} headerFunction={props.headerFunction}/>
+                <p className='title' style={mainColor}>The game is on!</p>
+                <p className='subTitle' style={secondColor}>Hope you enjoyed using the app. Donating helps keep the project online.</p>
+            </div>
             <img className="giffty3d" alt="Giffty 3D" src={Giffty3D}/>
             <a href="https://github.com/alisuetal"><Button value="Contact me" image={Contact} alt="Next icon"/></a>
             {/*<Link to=""><Button value="Donate" image={DonateIcon} alt="Next icon"/></Link>*/}

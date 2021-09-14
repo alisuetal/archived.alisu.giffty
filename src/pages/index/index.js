@@ -37,12 +37,16 @@ export default function Index (props){
     return(
         <div className="page">
             {(panelContent) ? <BottomPanel theme={props.theme} closePanel={() => setPanelContent(false)} content={panelContent}/> : false}
-            <Header theme={props.theme} headerFunction={props.headerFunction}/>
-            <p className='title' style={mainColor}>Need an app to help you host a Secret Santa?</p>
-            <p className='subTitle' style={secondColor}>Enter the names, gift suggestions, and more for free!</p>
+            <div>
+                <Header theme={props.theme} headerFunction={props.headerFunction}/>
+                <p className='title' style={mainColor}>Need an app to help you host a Secret Santa?</p>
+                <p className='subTitle' style={secondColor}>Enter the names, gift suggestions, and more for free!</p>
+            </div>
             <img className="giffty3d" alt="Giffty 3D" src={Giffty3D}/>
-            <Link to="/event-details"><Button value="Start" image={RightArrow} alt="Next icon"/></Link>
-            <p className="bottomLink" onClick={() => howTo()}>How to use</p>
+            <div>
+                <Link to="/event-details"><Button value="Start" image={RightArrow} alt="Next icon"/></Link>
+                <p className="bottomLink" onClick={() => howTo()}>How to use</p>
+            </div>
         </div>
     );
 }

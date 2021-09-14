@@ -23,8 +23,10 @@ export default function Page404 (props){
 
     return(
         <div className="page">
-            <Header theme={props.theme} headerFunction={props.headerFunction}/>
-            <p className='title' style={mainColor}>Page not found.</p>
+            <div>
+                <Header theme={props.theme} headerFunction={props.headerFunction}/>
+                <p className='title' style={mainColor}>Page not found.</p>
+            </div>
             <img className="IMG404" alt="Giffty 3D" src={IMG404}/>
             <Link to="/"><Button value="Home page" image={HomeIcon} alt="Home icon"/></Link>
         </div>

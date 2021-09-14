@@ -79,8 +79,10 @@ export default function Guests (props){
     return(
         <div className="page">
             {(panelContent) ? <BottomPanel theme={props.theme} closePanel={() => setPanelContent(false)} unmountTime={unmountPanel} content={panelContent}/> : false}
-            <Header step={2} theme={props.theme} link="/event-details" headerFunction={props.headerFunction}/>
-            <p className='title' style={mainColor}>Set the guests.</p>
+            <div>
+                <Header step={2} theme={props.theme} link="/event-details" headerFunction={props.headerFunction}/>
+                <p className='title' style={mainColor}>Set the guests.</p>
+            </div>
             <div className="guestList">
                 {(appendGuests().length !== 0) ? appendGuests().map((x) => (x)) : false}
                 <AddItem function={getAddGuest} text="Add guest"/>

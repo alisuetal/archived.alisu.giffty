@@ -44,7 +44,7 @@ export default function Header (props){
     }, [props.step]);
 
     return(
-        <div>
+        <div className="headerHolder">
             <div className="header">
                 {headerState["back"]}
                 <LogoName/>

@@ -10,7 +10,7 @@ import { GetPairs } from "../../script";
 export default function RevealButton (props){
     const [holderState, setHolderState] = React.useState({transition: "0.5s", backgroundSize: "0px", backgroundImage: Ellipse}); //background
     const [buttonState, setButtonState] = React.useState({backgroundColor: "#8542c8", backgroundImage: PressNHold}); //button
-    const [information, setInformation] = React.useState({opacity: 0}); //info
+    const [information, setInformation] = React.useState({opacity: 0, display: "none"}); //info
     const [tOut, setTOut] = React.useState(false);
     const [guestTwo, setGuestTwo] = React.useState("...");
     const [mainColor, setMainColor] = React.useState();
@@ -27,7 +27,7 @@ export default function RevealButton (props){
     function revealDetail(){
         setHolderState({background: "none"});
         setButtonState({backgroundColor: "transparent", backgroundImage: "none", cursor: "default"});
-        setInformation({opacity: 1});
+        setInformation({opacity: 1, display: "flex"});
         setGuestTwo(props.guestTwo);
     }
 
@@ -47,15 +47,17 @@ export default function RevealButton (props){
     }
 
     return(
-        <div>
+        <div class="holderPairInfo">
             <p className="title" style={mainColor}><span>{props.guestOne}</span> got <span>{guestTwo}</span></p>
             <div className="revealButton" style={buttonState} onTouchStartCapture={() => startAnimation()} onMouseDownCapture={() => startAnimation()} onMouseUpCapture={() => stopAnimation()} onTouchEndCapture={() => stopAnimation()}>
                 <div className="buttonBackground" style={holderState}>
                     <div className="guestInfo" style={information}>
-                        <p className="title" style={mainColor}>Gift suggestion</p>
-                        <button className="fieldLike" style={mainColor}>{props.giftSuggestion}</button>
-                        <p className="title" style={mainColor}>Gift price (approx.)</p>
-                        <button className="fieldLike" style={mainColor}>{new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(props.giftPrice)}</button>
+                        <div>
+                            <p className="title" style={mainColor}>Gift suggestion</p>
+                            <button className="fieldLike" style={mainColor}>{props.giftSuggestion}</button>
+                            <p className="title" style={mainColor}>Gift price (approx.)</p>
+                            <button className="fieldLike" style={mainColor}>{new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD',}).format(props.giftPrice)}</button>
+                        </div>
                         <Link
                             to={() => (props.currentPair === (GetPairs().length - 1)) ? ("/donate") : false}
                             onClick={() => (props.currentPair !== (GetPairs().length - 1)) ? (props.function((e) => (e + 1))) : false}>

@@ -1,6 +1,6 @@
 .guestList{
     margin-top: 3vh;
-    height: 54vh;
+    height: 46vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }

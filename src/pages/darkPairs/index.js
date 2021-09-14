@@ -89,11 +89,13 @@ export default function DarkPairs (props){
     return(
         <div className="page">
             {(panelContent) ? <BottomPanel theme={props.theme} closePanel={() => setPanelContent(false)} unmountTime={unmountPanel} content={panelContent}/> : false}
-            <Header step={3} theme={props.theme} link="/guests" headerFunction={props.headerFunction}/>
-            <p className='title' style={mainColor}>
-                Would you like to set any dark pairs?
-                <img alt="Information icon" src={icon} onClick={() => infoDarkPair()}/>
-            </p>
+            <div>
+                <Header step={3} theme={props.theme} link="/guests" headerFunction={props.headerFunction}/>
+                <p className='title' style={mainColor}>
+                    Would you like to set any dark pairs?
+                    <img alt="Information icon" src={icon} onClick={() => infoDarkPair()}/>
+                </p>
+            </div>
             <div className="guestList">
                 {(appendDarkPairs().length !== 0) ? appendDarkPairs().map((x) => (x)) : false}
                 <AddItem function={getAddDarkPair} text="Add Dark Pair"/>
