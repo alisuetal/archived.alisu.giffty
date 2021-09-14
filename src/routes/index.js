@@ -10,6 +10,7 @@ import Reveal from "../pages/reveal";
 import Donate from "../pages/donate";
 import SelectItems from "../components/selectItems";
 import './index.css';
+import Page404 from "../pages/404";
 
 
 export default function Routes (){
@@ -51,6 +52,7 @@ export default function Routes (){
                     <Route exact path="/game-begin" component={() => (<GameBegin headerFunction={settings} theme={theme}/>)}/>
                     <Route exact path="/reveal" component={() => (<Reveal headerFunction={settings} theme={theme}/>)}/>
                     <Route exact path="/donate" component={() => (<Donate headerFunction={settings} theme={theme}/>)}/>
+                    <Route path="/*" component={() => (<Page404 headerFunction={settings} theme={theme}/>)}/>
                 </Switch>
             </div>
         </BrowserRouter>

@@ -1,0 +1,17 @@
+.IMG404{
+    height: 40vh;
+    padding: 6vh 0 6vh 0;
+    align-self: center;
+}
+
+@media only screen and (max-height: 560px){
+    .IMG404 {
+        height: 250px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .IMG404 {
+        height: 250px;
+    }
+}

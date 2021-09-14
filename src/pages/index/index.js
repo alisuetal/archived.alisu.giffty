@@ -26,7 +26,7 @@ export default function Index (props){
     function howTo(){
         setPanelContent(
             <div>
-                <p style={mainColor}>1. Set the occasion name and gift price limit (if there's one).</p>
+                <p style={mainColor}>1. Set a gift price limit (if there's one).</p>
                 <p style={mainColor}>2. Set the guests.</p>
                 <p style={mainColor}>3. Set Dark Pairs (optional).</p>
                 <p style={mainColor}>4. See the results.</p>
